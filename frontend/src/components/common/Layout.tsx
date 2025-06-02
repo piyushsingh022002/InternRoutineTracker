@@ -15,6 +15,20 @@ const Main = styled.main`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  
+  /* Responsive breakpoints */
+  @media (max-width: 1280px) {
+    max-width: 1024px;
+  }
+  
+  @media (max-width: 1024px) {
+    max-width: 768px;
+  }
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
 `;
 
 interface LayoutProps {
