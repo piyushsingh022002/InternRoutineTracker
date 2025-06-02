@@ -52,6 +52,20 @@ const ButtonLink = styled(Link)`
   }
 `;
 
+// const Hero = styled.div`
+//   flex: 1;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   text-align: center;
+//   padding: 2rem;
+//   max-width: 800px;
+//   margin: 0 auto;
+// `;
+
+// updated css for Hero section
+
 const Hero = styled.div`
   flex: 1;
   display: flex;
@@ -60,8 +74,7 @@ const Hero = styled.div`
   justify-content: center;
   text-align: center;
   padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
 `;
 
 const HeroTitle = styled(motion.h1)`
@@ -79,17 +92,19 @@ const HeroSubtitle = styled(motion.p)`
   font-size: 1.25rem;
   color: var(--text-light);
   margin-bottom: 2.5rem;
-  max-width: 600px;
+  width: 100%;
+  /* max-width: 600px; */
 `;
 
 const ButtonGroup = styled(motion.div)`
   display: flex;
   gap: 1rem;
   margin-bottom: 3rem;
+  justify-content: center;
 `;
 
 const PrimaryButton = styled(Link)`
-  padding: 0.75rem 1.5rem;
+ /* padding: 0.75rem 1.5rem;
   background-color: var(--primary-color);
   color: white;
   border-radius: var(--radius);
@@ -99,11 +114,40 @@ const PrimaryButton = styled(Link)`
   &:hover {
     background-color: var(--primary-hover);
     color: white;
+  }*/
+/*Updated css for PrimaryButton*/
+    padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+  }
+
+  span.icon {
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  &:hover span.icon {
+    transform: translateX(0);
+    opacity: 1;
   }
 `;
 
 const SecondaryButton = styled(Link)`
-  padding: 0.75rem 1.5rem;
+ /* padding: 0.75rem 1.5rem;
   background-color: white;
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
@@ -113,6 +157,35 @@ const SecondaryButton = styled(Link)`
 
   &:hover {
     background-color: rgba(79, 70, 229, 0.1);
+  }*/
+  /*Updated css for SecondaryButton*/
+   padding: 0.75rem 1.5rem;
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: hidden;
+
+  &:hover {
+    background-color: rgba(79, 70, 229, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.15);
+  }
+
+  span.icon {
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  &:hover span.icon {
+    transform: translateX(0);
+    opacity: 1;
   }
 `;
 
@@ -232,8 +305,12 @@ const LandingPage: React.FC = () => {
             A simple yet powerful tool to keep track of your daily activities, notes, and progress during your internship journey.
           </HeroSubtitle>
           <ButtonGroup variants={itemVariants}>
-            <PrimaryButton to="/register">Get Started</PrimaryButton>
-            <SecondaryButton to="/login">Sign In</SecondaryButton>
+            <PrimaryButton to="/register">Get Started
+            {/*Updated css for PrimaryButton*/}
+            <span className="icon">🚀</span></PrimaryButton>
+            <SecondaryButton to="/login">Sign In
+            {/*Updated css for SecondaryButton*/}
+            <span className="icon">🔒</span></SecondaryButton>
           </ButtonGroup>
 
           <FeatureGrid variants={featureVariants}>

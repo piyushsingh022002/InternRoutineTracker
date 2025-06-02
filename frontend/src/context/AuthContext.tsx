@@ -3,7 +3,7 @@ import type { AuthState, LoginCredentials, RegisterCredentials, User } from '../
 import axios from 'axios';
 
 // API base URL
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5279/api';
 
 // Initial auth state
 const initialState: AuthState = {

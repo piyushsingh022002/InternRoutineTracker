@@ -1,5 +1,5 @@
 export interface User {
-  id: string;
+  id: number;
   username: string;
   email: string;
   createdAt: string;
@@ -14,8 +14,8 @@ export interface AuthState {
 }
 
 export interface Note {
-  id: string;
-  userId: string;
+  id: number;
+  userId: number;
   title: string;
   content: string;
   tags: string[];
@@ -25,16 +25,16 @@ export interface Note {
 }
 
 export interface Notification {
-  id: string;
-  userId: string;
+  id: number;
+  userId: number;
   message: string;
   isRead: boolean;
   createdAt: string;
 }
 
 export interface ActivityLog {
-  id: string;
-  userId: string;
+  id: number;
+  userId: number;
   date: string;
   hasNote: boolean;
   streakCount: number;
