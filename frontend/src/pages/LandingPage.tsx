@@ -129,7 +129,8 @@ const PrimaryButton = styled(Link)`
   position: relative;
 
   &:hover {
-    background-color: var(--primary-hover);
+    background-color: white;
+    color: var(--primary-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
   }
@@ -159,34 +160,37 @@ const SecondaryButton = styled(Link)`
     background-color: rgba(79, 70, 229, 0.1);
   }*/
   /*Updated css for SecondaryButton*/
-   padding: 0.75rem 1.5rem;
-  background-color: white;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  border-radius: var(--radius);
-  font-weight: 500;
+
+  
+  padding: 0.75rem 1.5rem;
+background-color: white;
+color: var(--primary-color);
+border: 1px solid var(--primary-color);
+border-radius: var(--radius);
+font-weight: 500;
+transition: all 0.3s ease;
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+overflow: hidden;
+
+&:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.15);
+}
+
+span.icon {
+  transform: translateX(-10px);
+  opacity: 0;
   transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  overflow: hidden;
+}
 
-  &:hover {
-    background-color: rgba(79, 70, 229, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.15);
-  }
-
-  span.icon {
-    transform: translateX(-10px);
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-
-  &:hover span.icon {
-    transform: translateX(0);
-    opacity: 1;
-  }
+&:hover span.icon {
+  transform: translateX(0);
+  opacity: 1;
+}
 `;
 
 const FeatureGrid = styled(motion.div)`
