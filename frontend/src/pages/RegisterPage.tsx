@@ -6,106 +6,172 @@ import { useAuth } from '../context/AuthContext';
 
 const RegisterContainer = styled.div`
   min-height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background-color: var(--bg-color);
+  background: linear-gradient(135deg, var(--bg-color) 0%, #f0f4f8 100%);
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow-y: auto;
 `;
 
 const RegisterCard = styled(motion.div)`
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   background-color: white;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 2rem 2rem 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+  overflow: visible;
+  margin: 2rem 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), #4facfe);
+  }
+
+  @media (max-height: 800px) {
+    padding: 1.5rem 2rem 1rem;
+  }
+`;
+
+const HeaderSection = styled.div`
+  margin-bottom: 1.5rem;
+  text-align: center;
 `;
 
 const Logo = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--primary-color);
-  text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Title = styled.h1`
   font-size: 1.5rem;
   font-weight: 600;
-  text-align: center;
-  margin-bottom: 1.5rem;
+  color: #333;
+  margin: 0.5rem 0 1rem;
+`;
+
+const Subtitle = styled.p`
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.75rem;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
+`;
+
+const FormRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
 `;
 
 const Label = styled.label`
   font-size: 0.875rem;
   font-weight: 500;
+  color: #444;
 `;
 
 const Input = styled.input`
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius);
-  font-size: 0.875rem;
-  transition: var(--transition);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  background-color: #f8fafc;
 
   &:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+    background-color: white;
+  }
+
+  &::placeholder {
+    color: #a0aec0;
   }
 `;
 
 const ErrorMessage = styled.div`
-  color: var(--danger-color);
+  color: #e53e3e;
   font-size: 0.75rem;
   margin-top: 0.25rem;
 `;
 
+const AlertBox = styled(motion.div)`
+  background-color: #fed7d7;
+  border-left: 4px solid #e53e3e;
+  color: #c53030;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+`;
+
 const SubmitButton = styled(motion.button)`
   padding: 0.75rem;
-  background-color: var(--primary-color);
+  background: linear-gradient(90deg, var(--primary-color), #4facfe);
   color: white;
   border: none;
   border-radius: var(--radius);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.2s ease;
+  margin-top: 0.25rem;
 
   &:hover {
-    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.25);
   }
 
   &:disabled {
-    background-color: var(--text-light);
+    background: #cbd5e0;
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
   }
 `;
 
 const SignInText = styled.div`
   text-align: center;
-  font-size: 0.875rem;
-  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  margin-top: 1.25rem;
+  color: #4a5568;
 `;
 
 const SignInLink = styled(Link)`
   color: var(--primary-color);
-  font-weight: 500;
-  margin-left: 0.25rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  transition: all 0.2s ease;
 
   &:hover {
+    color: #4facfe;
     text-decoration: underline;
   }
 `;
@@ -186,18 +252,20 @@ const RegisterPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Logo>InternRoutineTracker</Logo>
-        <Title>Create your account</Title>
+        <HeaderSection>
+          <Logo>InternRoutineTracker</Logo>
+          <Title>Create your account</Title>
+          <Subtitle>Track your internship activities efficiently</Subtitle>
+        </HeaderSection>
         
         {error && (
-          <motion.div
-            className="alert alert-error"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          <AlertBox
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
             {error}
-          </motion.div>
+          </AlertBox>
         )}
         
         <Form onSubmit={handleSubmit}>
@@ -208,13 +276,13 @@ const RegisterPage: React.FC = () => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="johndoe"
+              placeholder="Enter your username"
             />
             {formErrors.username && <ErrorMessage>{formErrors.username}</ErrorMessage>}
           </FormGroup>
           
           <FormGroup>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">Email Address</Label>
             <Input
               id="email"
               type="email"
@@ -225,29 +293,31 @@ const RegisterPage: React.FC = () => {
             {formErrors.email && <ErrorMessage>{formErrors.email}</ErrorMessage>}
           </FormGroup>
           
-          <FormGroup>
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-            />
-            {formErrors.password && <ErrorMessage>{formErrors.password}</ErrorMessage>}
-          </FormGroup>
-          
-          <FormGroup>
-            <Label htmlFor="confirmPassword">Confirm Password</Label>
-            <Input
-              id="confirmPassword"
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="••••••••"
-            />
-            {formErrors.confirmPassword && <ErrorMessage>{formErrors.confirmPassword}</ErrorMessage>}
-          </FormGroup>
+          <FormRow>
+            <FormGroup>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+              />
+              {formErrors.password && <ErrorMessage>{formErrors.password}</ErrorMessage>}
+            </FormGroup>
+            
+            <FormGroup>
+              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="••••••••"
+              />
+              {formErrors.confirmPassword && <ErrorMessage>{formErrors.confirmPassword}</ErrorMessage>}
+            </FormGroup>
+          </FormRow>
           
           <SubmitButton
             type="submit"
