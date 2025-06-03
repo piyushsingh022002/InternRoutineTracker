@@ -11,35 +11,35 @@ import ViewNote from './pages/ViewNote';
 import NotFound from './pages/NotFound';
 import './styles/global.css';
 
-// Protected route component
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const { isAuthenticated, isLoading } = useAuth();
+// // Protected route component
+// const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+//   const { isAuthenticated, isLoading } = useAuth();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+//   if (isLoading) {
+//     return <div>Loading...</div>;
+//   }
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
+//   if (!isAuthenticated) {
+//     return <Navigate to="/login" />;
+//   }
 
-  return children;
-};
+//   return children;
+// };
 
-// Public route component (redirects to dashboard if authenticated)
-const PublicRoute = ({ children }: { children: JSX.Element }) => {
-  const { isAuthenticated, isLoading } = useAuth();
+// // Public route component (redirects to dashboard if authenticated)
+// const PublicRoute = ({ children }: { children: JSX.Element }) => {
+//   const { isAuthenticated, isLoading } = useAuth();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+//   if (isLoading) {
+//     return <div>Loading...</div>;
+//   }
 
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" />;
-  }
+//   if (isAuthenticated) {
+//     return <Navigate to="/dashboard" />;
+//   }
 
-  return children;
-};
+//   return children;
+// };
 
 function App() {
   return (
@@ -52,25 +52,25 @@ function App() {
               <Route 
                 path="/" 
                 element={
-                  <PublicRoute>
+                  // <PublicRoute>
                     <LandingPage />
-                  </PublicRoute>
+                  // </PublicRoute>
                 } 
               />
               <Route 
                 path="/login" 
                 element={
-                  <PublicRoute>
+                  // <PublicRoute>
                     <LoginPage />
-                  </PublicRoute>
+                  // </PublicRoute>
                 } 
               />
               <Route 
                 path="/register" 
                 element={
-                  <PublicRoute>
+                  // <PublicRoute>
                     <RegisterPage />
-                  </PublicRoute>
+                  // </PublicRoute>
                 } 
               />
               

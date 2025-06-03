@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 const LandingContainer = styled.div`
   min-height: 100vh;
@@ -86,6 +87,9 @@ const HeroTitle = styled(motion.h1)`
   @media (min-width: 768px) {
     font-size: 4rem;
   }
+    .highlight {
+    color: rgb(64, 175, 230);
+  }
 `;
 
 const HeroSubtitle = styled(motion.p)`
@@ -129,7 +133,8 @@ const PrimaryButton = styled(Link)`
   position: relative;
 
   &:hover {
-    background-color: var(--primary-hover);
+    background-color: white;
+    color: var(--primary-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
   }
@@ -159,34 +164,37 @@ const SecondaryButton = styled(Link)`
     background-color: rgba(79, 70, 229, 0.1);
   }*/
   /*Updated css for SecondaryButton*/
-   padding: 0.75rem 1.5rem;
-  background-color: white;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  border-radius: var(--radius);
-  font-weight: 500;
+
+  
+  padding: 0.75rem 1.5rem;
+background-color: white;
+color: var(--primary-color);
+border: 1px solid var(--primary-color);
+border-radius: var(--radius);
+font-weight: 500;
+transition: all 0.3s ease;
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+overflow: hidden;
+
+&:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.15);
+}
+
+span.icon {
+  transform: translateX(-10px);
+  opacity: 0;
   transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  overflow: hidden;
+}
 
-  &:hover {
-    background-color: rgba(79, 70, 229, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.15);
-  }
-
-  span.icon {
-    transform: translateX(-10px);
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-
-  &:hover span.icon {
-    transform: translateX(0);
-    opacity: 1;
-  }
+&:hover span.icon {
+  transform: translateX(0);
+  opacity: 1;
+}
 `;
 
 const FeatureGrid = styled(motion.div)`
@@ -200,7 +208,7 @@ const FeatureGrid = styled(motion.div)`
   }
 `;
 
-const FeatureCard = styled(motion.div)`
+/*const FeatureCard = styled(motion.div)`
   background-color: white;
   padding: 1.5rem;
   border-radius: var(--radius-md);
@@ -229,6 +237,73 @@ const FeatureDescription = styled.p`
   color: var(--text-light);
   font-size: 0.875rem;
 `;
+*/
+
+/* updated code for the feature cards */
+
+const FeatureIcon = styled.div`
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
+
+  &:hover {
+    transform: scale(1.2);
+    filter: brightness(1.3);
+  }
+`;
+
+const FeatureTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+`;
+
+const FeatureDescription = styled.p`
+  color: var(--text-light);
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+`;
+
+const FeatureCard = styled(motion.div)`
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid transparent;
+  transition: var(--transition), background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-5px);
+    background-color: #f5f5f5;
+    color: #f0f0f0;
+    border: 1px solid rgb(64, 175, 230);
+  }
+
+  &:hover ${FeatureTitle},
+  &:hover ${FeatureDescription} {
+    color:rgb(64, 175, 230);
+  }
+
+  &:hover ${FeatureIcon} {
+    animation: popIcon 0.6s ease forwards;
+  }
+`;
+
+
+// Add keyframes animation for icon bounce/pop
+const GlobalStyle = createGlobalStyle`
+  @keyframes popIcon {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+`;
+
+
+
 
 const Footer = styled.footer`
   padding: 2rem;
@@ -299,7 +374,7 @@ const LandingPage: React.FC = () => {
           animate="visible"
         >
           <HeroTitle variants={itemVariants}>
-            Track Your Daily Progress as an Intern
+            Track Your Daily <span className="highlight">Progress</span> as an Intern
           </HeroTitle>
           <HeroSubtitle variants={itemVariants}>
             A simple yet powerful tool to keep track of your daily activities, notes, and progress during your internship journey.
@@ -314,6 +389,7 @@ const LandingPage: React.FC = () => {
           </ButtonGroup>
 
           <FeatureGrid variants={featureVariants}>
+            <GlobalStyle />
             <FeatureCard variants={featureItemVariants}>
               <FeatureIcon>📝</FeatureIcon>
               <FeatureTitle>Daily Notes</FeatureTitle>
@@ -340,7 +416,7 @@ const LandingPage: React.FC = () => {
       </Hero>
 
       <Footer>
-        &copy; {new Date().getFullYear()} InternRoutineTracker. All rights reserved.
+        &copy; {new Date().getFullYear()} InternRoutineTracker. All rights reserved. Piyush Singh !!
       </Footer>
     </LandingContainer>
   );
