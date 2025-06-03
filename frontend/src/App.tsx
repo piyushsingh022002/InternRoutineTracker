@@ -86,25 +86,25 @@ function App() {
               <Route 
                 path="/notes/new" 
                 element={
-                  <ProtectedRoute>
+                  // <ProtectedRoute>
                     <NoteEditor />
-                  </ProtectedRoute>
+                  // </ProtectedRoute>
                 } 
               />
               <Route 
                 path="/notes/:id" 
                 element={
-                  <ProtectedRoute>
+                  // <ProtectedRoute>
                     <ViewNote />
-                  </ProtectedRoute>
+                  // </ProtectedRoute>
                 } 
               />
               <Route 
                 path="/notes/:id/edit" 
                 element={
-                  <ProtectedRoute>
+                  // <ProtectedRoute>
                     <NoteEditor />
-                  </ProtectedRoute>
+                  // </ProtectedRoute>
                 } 
               />
               
