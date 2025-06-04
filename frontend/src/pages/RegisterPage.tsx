@@ -6,19 +6,20 @@ import { useAuth } from '../context/AuthContext';
 
 const RegisterContainer = styled.div`
   min-height: 100vh;
-  width: 100%;
+  width: 1430px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--bg-color) 0%, #f0f4f8 100%);
-  padding: 1rem;
+  padding: 5rem;
   box-sizing: border-box;
   overflow-y: auto;
 `;
 
 const RegisterCard = styled(motion.div)`
-  width: 100%;
+  
   max-width: 500px;
+  width: 100%;
   background-color: white;
   border-radius: var(--radius-lg);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);

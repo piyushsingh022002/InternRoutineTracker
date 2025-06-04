@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 
 const LoginContainer = styled.div`
   min-height: 100vh;
+  width: 1430px;
   display: flex;
   align-items: center;
   justify-content: center;
