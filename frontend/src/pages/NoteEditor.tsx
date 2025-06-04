@@ -6,6 +6,7 @@ import { useNotes } from '../context/NotesContext';
 
 const EditorContainer = styled.div`
   min-height: 100vh;
+  width: 1430px;
   background-color: var(--bg-color);
   padding: 2rem;
 `;

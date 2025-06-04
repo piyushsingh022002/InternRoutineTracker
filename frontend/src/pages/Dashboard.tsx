@@ -9,6 +9,7 @@ import type { Note } from '../types';
 
 const DashboardContainer = styled.div`
   min-height: 100vh;
+  width: 1430px;
   background-color: var(--bg-color);
 `;
 
